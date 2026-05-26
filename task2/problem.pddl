@@ -1,22 +1,31 @@
-; Task 2 — Vacuum robot problem.  ===  WRITE YOUR PROBLEM HERE  ===
-;
-; Goal: all rooms are clean — (and (clean pokoj1) (clean pokoj2) (clean pokoj3)).
-
-(define (problem clean-all-rooms)
-  (:domain vacuum-robot)
+(define (problem cleaning-problem)
+  (:domain cleaning-robot)
 
   (:objects
-    ; TODO: robot - robot
-    ; TODO: pokoj1 pokoj2 pokoj3 - room
+    robot1        - robot
+    room1 room2 room3 - room
   )
 
   (:init
-    ; TODO: place the robot, mark rooms dirty, connect/allow movement as needed
+    ;; Robot starts in room1
+    (at robot1 room1)
+
+    ;; All rooms are initially dirty
+    (dirty room1)
+    (dirty room2)
+    (dirty room3)
+
+    ;; Room adjacency (fully connected for flexibility)
+    (connected room1 room2) (connected room2 room1)
+    (connected room2 room3) (connected room3 room2)
+    (connected room1 room3) (connected room3 room1)
   )
 
   (:goal
     (and
-      ; TODO: (clean pokoj1) (clean pokoj2) (clean pokoj3)
+      (clean room1)
+      (clean room2)
+      (clean room3)
     )
   )
 )
